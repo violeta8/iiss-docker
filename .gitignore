@@ -4,6 +4,10 @@
 # VS Code
 .vscode/
 
+# Output
+*.html
+*.pdf
+
 # Logs
 logs
 *.log
