@@ -1,13 +1,15 @@
 ---
 marp: true
-title: Apuntes DSS 2021
-description: Apuntes de Diseño de Sistemas Software, curso 2020/21
+title: Apuntes IISS 2021
+description: Apuntes de Implementación e Implantación de Sistemas Software, curso 2021/22
 ---
 
 <!-- size: 16:9 -->
 <!-- theme: default -->
 
 <!-- paginate: false -->
+
+<!-- headingDivider: 1 -->
 
 <style>
 h1 {
@@ -19,12 +21,13 @@ img[alt~="center"] {
 }
 </style>
 
-
 # DOCKER - Parte 1
 
 ![width:480 center](img/docker-010.png)
 
 ---
+
+<!-- paginate: true -->
 
 ## ¿Qué es Docker?
 
@@ -472,7 +475,7 @@ Creamos un fichero llamado Dockerfile: `touch Dockerfile`
 
 Editamos el fichero con el siguiente contenido:
 
-```
+```docker
 FROM ubuntu:14.04 
 RUN apt-get update && \
   apt-get install -y apache2 && \
