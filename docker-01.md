@@ -515,7 +515,7 @@ Averiguar el tamaño de las imágenes
 
 La imagen de ubuntu no trae muchas de las herramientas necesarias para comprobar el funcionamiento del contenedor. Se recomienda instalar las siguientes herramientas.
 
-```
+```bash
 apt-get update
 apt-get install nano
 apt-get install -y net-tools
@@ -525,6 +525,17 @@ apt-get install curl
 ```
 
 ---
+
+<style scoped>
+p {
+  text-align: center;
+  font-size: 125%;
+  color: green;
+}
+</style>
+
+[https://docs.docker.com/get-started/](https://docs.docker.com/get-started/)
+
 
 # Ejercicio: práctica 1
 
@@ -536,8 +547,6 @@ Tareas:
 2. Personalizar el contenedor.
 3. Subir la imagen del contenedor creado a Docker Hub. La imagen debe llamarse `apacheserver_p1`.
 4. Subir el enlace de la imagen creada a la tarea del CV.
-
----
 
 # Task assignment 1
 
