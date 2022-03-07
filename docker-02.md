@@ -133,7 +133,7 @@ Ejecutar el contenedor:
 
 ```bash
 docker run -d -P --name=apache-bind-1 \
-  --mount type=bind,source=`p02`/p02,target=/app bitnami/apache
+  --mount type=bind,source=`pwd`/p02,target=/app bitnami/apache
 ```
 
 Comprobar los puertos a los que se ha asignado el 8080 (http) y 8443 (https) del Servidor Apache configurado en el contenedor:
@@ -180,7 +180,7 @@ Si eliminamos el contenedor, no perdemos el contenido de la web:
 docker stop apache-bind-1
 docker rm apache-bind-1
 docker run -d -P --name=apache-bind-2 \
-  --mount type=bind,source=/Users/Usuario/p02,target=/app bitnami/apache
+  --mount type=bind,source=`pwd`/p02,target=/app bitnami/apache
 ```
 
 ---
