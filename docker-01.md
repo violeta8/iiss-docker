@@ -269,9 +269,8 @@ Poner nombre a un contenedor
 
 `docker run -t -i --name myUbuntu ubuntu /bin/bash`
 
- _-t incluye terminal inside contenedor_ 
-
- _-i se puede trabajar de manera interactiva_ 
+ `-t` incluye terminal dentro del contenedor
+ `-i` se puede trabajar de manera interactiva
 
 Para salir del terminal
 
@@ -404,9 +403,9 @@ Reiniciar un contenedor
 
 ## Creando nuestros contenedores
 
-- Creación **desde imagen**: Partimos de una imagen de un contenedor para realizar modificaciones y crear el nuestro
+- Creación __desde imagen__: Partimos de una imagen de un contenedor para realizar modificaciones y crear el nuestro
 
-- Creación desde cero: Partimos de un **fichero de configuración** para crear una imagen para un contenedor
+- Creación desde cero: Partimos de un __fichero de configuración__ para crear una imagen para un contenedor
 
 ### Creación desde una imagen
 
@@ -422,7 +421,7 @@ Abrir un terminal del contenedor
 
 Instalar nano, editar `app.py` y hacer commit
 
-```
+```bash
 docker commit -m "Modificando saludo" -a "Mi Nombre" ac1c3a5c70ad \
     usuario/myweb:v2
 ```
