@@ -397,13 +397,28 @@ services:
       image: redis:4.0.11-alpine
 ```
 
----
-
 Intentamos escalar el servicio de nuevo:
 
 `docker-compose up -d --scale app=3`
 
-Había un conflicto de puertos porque todos las réplicas querían usar el mismo.
+---
+
+Había un conflicto de puertos porque todas las réplicas querían usar el mismo.
+
+Si persisten los conflictos de puertos, comprobar qué puertos están ocupados y cerrar todos los procesos que ocupen los puertos 80-83:
+
+`sudo lsof -i -P | grep LISTEN`
+
+Abrir en el navegador `localhost:80`, `localhost:81`, etc.
+
+Probar a ejecutar varias veces el siguiente comando con distintos datos (`'{"name":"Ana"}'`, `'{"name":"Belén"}'`, etc.) y distintos endpoints (`localhost:80`, `localhost:81`, `localhost:82`). ¿Se comparten o no los valores almacenados en `redis`? ¿Y si lanzáramos varias instancias del contenedor `redis`?
+
+```bash
+curl --header "Content-Type: application/json" \
+   --request POST \
+   --data '{"name":"Usuario"}' \
+   localhost:80
+```
 
 ---
 
