@@ -230,7 +230,7 @@ version: '3'
 services:
   app:
     build: .
-    image: usuario/flask-redis:1.0
+    image: dodero/flask-redis:1.0
     environment:
       - FLASK_ENV=development
     ports:
@@ -244,18 +244,32 @@ services:
 Ficheros necesarios en la carpeta:
 
 ```console
-$ ls docker-compose-ejemplo1
-Dockerfile
-app.py
-docker-compose.yml
-requirements.txt
+$ ls -l docker-compose-ejemplo1/
+total 32
+-rw-r--r--  1 dodero  staff  184 11 mar 09:19 Dockerfile
+-rw-r--r--  1 dodero  staff  481 11 mar 09:19 app.py
+-rw-r--r--  1 dodero  staff  196 11 mar 09:19 docker-compose.yml
+-rw-r--r--  1 dodero  staff   17 11 mar 09:15 requirements.txt
 ```
+
+Cambiarse a la carpeta: `cd ~/docker-compose-ejemplo1`
 
 Ejecutar Docker Compose:
 
-`docker-compose up`  (con -d en background)
+`docker-compose up`  (añadir `-d` para ejecutar en background)
 
 **NOTA**: docker-compose está instalado en Windows y MacOS por defecto. En linux hay que instalarlo manualmente.
+
+---
+
+Con lo anterior hemos arrancado un contenedor (servicio) `app` con la aplicación en Python y otro contenedor (servicio) `redis` con una base de datos _redis_.
+
+```console
+$ docker ps
+CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS         PORTS                    NAMES
+ff4292697a4c   dodero/flask-redis:1.0   "/bin/sh -c 'flask r…"   5 minutes ago   Up 5 minutes   0.0.0.0:5000->5000/tcp   docker-compose-ejemplo1-app-1
+dc5a0762ce04   redis:4.0.11-alpine      "docker-entrypoint.s…"   5 minutes ago   Up 5 minutes   6379/tcp                 docker-compose-ejemplo1-redis-1
+```
 
 ---
 
@@ -330,7 +344,7 @@ services:
       context: .
       args:
         - IMAGE_VERSION=3.7.0-alpine3.8
-    image: usuario/flask-redis:1.0
+    image: dodero/flask-redis:1.0
     environment:
       - FLASK_ENV=development
     ports:
@@ -339,17 +353,28 @@ services:
     image: redis:4.0.11-alpine
 ```
 
+Ejecutamos `docker-compose up -d` y sólo se regenera lo necesario (docker-compose mantiene los estados)
+
 ---
 
-Ejecutamos docker-compose y sólo se regenera lo necesario (docker-compose mantiene los estados):
+### Escalar servicios
 
-`docker-compose up -d`
+Se pueden arrancar varias instancias de un mismo servicio para así escalarlo
 
 Escalar un servicio con Docker Compose:
 
 `docker-compose up -d --scale app=3` Falla, ¿por qué?
 
-![](img/docker-034.png)
+```console
+$ docker-compose up -d --scale app=3
+[+] Running 2/4
+ ⠿ Container docker-compose-ejemplo1-redis-1  Running                                                                 0.0s
+ ⠿ Container docker-compose-ejemplo1-app-3    Running                                                                 0.0s
+ ⠹ Container docker-compose-ejemplo1-app-1    Starting                                                                0.2s
+ ⠹ Container docker-compose-ejemplo1-app-2    Starting                                                                0.2s
+Error response from daemon: driver failed programming external connectivity on endpoint docker-compose-ejemplo1-app-2
+(43f832ac334345e85b60a65851c9ac76d250e3498e0699469e066dddd8655ba6): Bind for 0.0.0.0:80 failed: port is already allocated
+```
 
 ---
 
@@ -363,7 +388,7 @@ services:
         context: .
         args:
           - IMAGE_VERSION=3.7.0-alpine3.8
-      image: usuario/flask-redis:1.0
+      image: dodero/flask-redis:1.0
       environment:
         - FLASK_ENV=development
       ports:
@@ -374,12 +399,11 @@ services:
 
 ---
 
-Intentamos escalar el servicio de nuevo
+Intentamos escalar el servicio de nuevo:
 
-`docker-compose up -d --scale app=3` 
+`docker-compose up -d --scale app=3`
 
-Hhabía un conflicto de puertos porque todos las réplicas querían usar el mismo.
-¡Ahora si funciona!
+Había un conflicto de puertos porque todos las réplicas querían usar el mismo.
 
 ---
 
@@ -391,14 +415,14 @@ Usando memoria persistente en los contenedores
 
 ### Ejemplo de uso de volumen con Docker Compose
 
-Configuramos el volumen en el archivo docker-compose.yml
+Configuramos el volumen en el archivo `docker-compose.yml`
 
 ```yml
 version: '3'
 services:
   app:
     build: .
-    image: usuario/flask-redis:1.0
+    image: dodero/flask-redis:1.0
     environment:
       - FLASK_ENV=development
     ports:
@@ -433,14 +457,14 @@ Conceptos básicos de red con Docker Compose
 
 ### Ejemplo de configuración de red con Docker Compose
 
-Configuramos la red en el archivo docker-compose.yml
+Configuramos la red en el archivo `docker-compose.yml`
 
 ```yml
 version: '3'
 services:
   app:
     build: .
-    image: usuario/flask-redis:1.0
+    image: dodero/flask-redis:1.0
     environment:
       - FLASK_ENV=development
     ports:
@@ -459,9 +483,7 @@ networks:
 
 Ejecutamos docker-compose
 
-`docker-compose up -d`
-
-Ejecutamos docker-compose
+`docker-compose down`
 
 `docker-compose up -d`
 
@@ -473,7 +495,7 @@ Ver la configuración de la red creada
 
 ## Práctica 3
 
-(Tarea disponible en el Campus Virtual)
+_(Tarea disponible en el Campus Virtual)_
 
 Subir el fichero `docker-compose.yml` creado y todo lo necesario, y además, un documento PDF con la explicación de la configuración realizada en el fichero. Incluir también las capturas donde se requiera mostrar en el navegador el correcto funcionamiento de los contenedores.
 
@@ -499,7 +521,7 @@ Subir el fichero `docker-compose.yml` creado y todo lo necesario, y además, un 
 
 ## Task 3
 
-(Task available in the Virtual Campus9
+_(Task available in the Virtual Campus)_
 
 Upload the file `docker-compose.yml` created and everything needed, and also a PDF document with the explanation of the configuration made in the file. Include also the screenshots where it is required to show in the browser the correct functioning of the containers.
 
