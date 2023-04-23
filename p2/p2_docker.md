@@ -31,7 +31,8 @@ El dockerfile se encuentra en la carpeta mi-apache y se ejecuta el comando 'dock
 5. http://localhost:8080/
     http://localhost:8081/
 
-    ![width:600 center](..\img\docker_p2.jpg)
+    ![docker_p2](https://user-images.githubusercontent.com/117084676/233868530-6e231a86-a61a-4ffc-8bd9-e758970a14c6.jpg)
+
 
 ## Parte 2
 
