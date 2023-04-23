@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - volumenDocker:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  drupal:
+    image: drupal:latest
+    ports:
+      - "81:80"
+    volumes:
+      - volumenDocker:/var/www/html
+    depends_on:
+      - db
+
+volumes:
+  volumenDocker:

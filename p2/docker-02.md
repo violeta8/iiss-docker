@@ -23,7 +23,7 @@ img[alt~="center"] {
 
 # DOCKER - Parte 2
 
-![width:480 center](img/docker-010.png)
+![width:480 center](../img/docker-010.png)
 
 ---
 
@@ -171,7 +171,7 @@ Editar el fichero con _nano_ (u otro editor)
 
 Abrir en el host las URL http://localhost:55004/ y https://localhost:55003/
 
-![width:550](img/iiss-docker-021.png) ![width:550](img/iiss-docker-022.png)
+![width:550](../img/iiss-docker-021.png) ![width:550](../img/iiss-docker-022.png)
 
 Si eliminamos el contenedor, no perdemos el contenido de la web:
 
@@ -230,7 +230,7 @@ Acceso de nuevo al volumen y comprobar que está el archivo `index.html`
 
 Acceso al contenido de la web
 
-![width:550](img/iiss-docker-023.png)
+![width:550](../img/iiss-docker-023.png)
 
 Compartir volumen con otro contenedor
 
@@ -344,7 +344,7 @@ docker run -d --name wordpress -p 8080:8080 -p 8443:8443 \
 
 ---
 
-![width:600 center](img/iiss-docker-024.png)
+![width:600 center](../img/iiss-docker-024.png)
 
 ---
 

@@ -31,9 +31,9 @@ El dockerfile se encuentra en la carpeta mi-apache y se ejecuta el comando 'dock
 5. http://localhost:8080/
     http://localhost:8081/
 
-    ![width:300 center](img\docker_p2.jpg)
+    ![width:300 center](../img\docker_p2.jpg)
 
-## parte 2
+## Parte 2
 
 1. docker network create redDocker
 
